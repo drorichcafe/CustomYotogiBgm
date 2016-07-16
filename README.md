@@ -33,6 +33,7 @@ ConfigフォルダにあるCustomYotogiBgmStatic.xmlを編集してください�
 
 * 0.0.0.2
   * WaitCommandの仕様を削除
+  * FadeTimeタグを追加
   * CM3D2.CustomYotogiBgmStaticプラグインを追加
 
 * 0.0.0.1
