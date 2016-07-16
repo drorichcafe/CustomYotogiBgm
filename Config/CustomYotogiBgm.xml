@@ -34,6 +34,7 @@
       <Files>
         <File>
           <Name>MY_POSE_BGM.ogg</Name>
+          <Loop>true</true>
         </File>
       </Files>
     </Item>

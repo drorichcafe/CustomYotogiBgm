@@ -10,20 +10,20 @@ using UnityInjector.Attributes;
 
 namespace CM3D2.CustomYotogiBgm
 {
-	[PluginFilter("CM3D2x64"), PluginFilter("CM3D2x86"), PluginName("CustomYotogiBgm"), PluginVersion("0.0.0.1")]
+	[PluginFilter("CM3D2x64"), PluginFilter("CM3D2x86"), PluginName("CustomYotogiBgm"), PluginVersion("0.0.0.2")]
 	public class CustomYotogiBgm : PluginBase
 	{
 		public class File
 		{
 			public string Name = "";
 			public bool Loop = false;
+			public float FadeTime = 2.0f;
 		}
 
 		public class Item
 		{
 			public string SkillCategory = "";
 			public string SkillName = "";
-			public bool WaitCommand = false;
 			public string CommandName = "";
 			public string CommandType = "";
 			public string ExcitementStatus = "";
@@ -72,30 +72,20 @@ namespace CM3D2.CustomYotogiBgm
 				"StageName: " + (m_stageName.Length > 0 ? m_stageName : "-") + ";");
 
 			loadConfig();
-			if (m_config != null)
+			if (m_config != null && m_data != null)
 			{
 				foreach (var item in m_config.Items)
 				{
-#if 0
-					Console.WriteLine("ITEM = SkillCategory: " + item.SkillCategory + ", " +
-						"SkillName: " + item.SkillName + ", " +
-						"CommandName: " + item.CommandName + ", " +
-						"CommandType: " + item.CommandType + ", " +
-						"ExcitementStatus: " + item.ExcitementStatus + ", " +
-						"StageName: " + item.StageName + ";");
-#endif
-
 					if (item.Files.Count == 0) continue;
 					if (item.SkillCategory.Length > 0 && (skill == null || !skill.skill_pair.base_data.category.ToString().Contains(item.SkillCategory))) continue;
 					if (item.SkillName.Length > 0 && (skill == null || !skill.skill_pair.base_data.name.Contains(item.SkillName))) continue;
-					if (item.WaitCommand && m_data == null) continue;
 					if (item.CommandName.Length > 0 && (m_data == null || !m_data.basic.name.Contains(item.CommandName))) continue;
 					if (item.CommandType.Length > 0 && (m_data == null || !m_data.basic.command_type.ToString().Contains(item.CommandType))) continue;
 					if (item.ExcitementStatus.Length > 0 && !excite.Contains(item.ExcitementStatus)) continue;
 					if (item.StageName.Length > 0 && !m_stageName.Contains(item.StageName)) continue;
 
 					File f = item.Files[UnityEngine.Random.Range(0, item.Files.Count)];
-					GameMain.Instance.SoundMgr.PlayBGM(f.Name, 0.0f, f.Loop);
+					GameMain.Instance.SoundMgr.PlayBGM(f.Name, f.FadeTime, f.Loop);
 					return;
 				}
 			}
@@ -103,13 +93,13 @@ namespace CM3D2.CustomYotogiBgm
 			var stageData = Yotogi.GetStageData(YotogiStageSelectManager.StagePrefab);
 			if (stageData != null)
 			{
-				GameMain.Instance.SoundMgr.PlayBGM(stageData.bgm_file, 0.0f, true);
+				GameMain.Instance.SoundMgr.PlayBGM(stageData.bgm_file, 2.0f, true);
 			}
 		}
 
 		private void updateState()
 		{
-			var play_manager = getPlayerManager();
+			var play_manager = getPlayManager();
 			if (play_manager != null)
 			{
 				var command_factory = (YotogiCommandFactory)getPrivateMember(play_manager, "command_factory_");
@@ -152,14 +142,14 @@ namespace CM3D2.CustomYotogiBgm
 
 		private YotogiManager.PlayingSkillData getCurrentSkill()
 		{
-			var play_manager = getPlayerManager();
+			var play_manager = getPlayManager();
 			if (play_manager == null) return null;
 			return (YotogiManager.PlayingSkillData)getPrivateMember(play_manager, "playing_skill_");
 		}
 
 		private Yotogi.ExcitementStatus getExcitementStatus()
 		{
-			var play_manager = getPlayerManager();
+			var play_manager = getPlayManager();
 			if (play_manager == null) return Yotogi.ExcitementStatus.Small;
 			var maidStatus = (MaidParam.StatusAccess)getPrivateMember(play_manager, "maid_status_");
 			if (maidStatus == null) return Yotogi.ExcitementStatus.Small;
@@ -173,7 +163,7 @@ namespace CM3D2.CustomYotogiBgm
 			return go.GetComponent<YotogiManager>();
 		}
 
-		private YotogiPlayManager getPlayerManager()
+		private YotogiPlayManager getPlayManager()
 		{
 			var yotogi_manager = getYotogiManager();
 			if (yotogi_manager == null) return null;
