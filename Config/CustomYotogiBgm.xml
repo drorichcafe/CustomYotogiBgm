@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+<!-- 変態カテゴリの時に再生するBGMを変更する例
+    <Item>
+      <SkillCategory>変態</SkillCategory>
+      <Files>
+        <File>
+          <Name>MY_HENTAI_BGM.ogg</Name>
+          <Loop>true</Loop>
+        </File>
+      </Files>
+    </Item>
+-->
+<!-- 絶頂タイプのコマンドが実行されたら２つのジングルのどちらかをランダムに鳴らす例
+    <Item>
+      <WaitCommand>true</WaitCommand>
+      <CommandType>絶頂</CommandType>
+      <Files>
+        <File>
+          <Name>A.ogg</Name>
+          <Loop>false</Loop>
+        </File>
+        <File>
+          <Name>B.ogg</Name>
+          <Loop>false</Loop>
+        </File>
+      </Files>
+    </Item>
+-->
+<!-- ○○ポーズスキル実行時のBGMを変更する例
+    <Item>
+      <SkillName>ポーズ</SkillName>
+      <Files>
+        <File>
+          <Name>MY_POSE_BGM.ogg</Name>
+        </File>
+      </Files>
+    </Item>
+-->
+  </Items>
+</Config>
