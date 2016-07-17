@@ -1,15 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Items>
-<!-- ステージごとのBGMを下記の要領で指定してください
-    <Item>
-      <Stage>主人公の部屋</Stage>
-      <Bgm>MyRoom.ogg</Bgm>
-    </Item>
-    <Item>
-      <Stage>プレイルーム</Stage>
-      <Bgm>PlayRoom.ogg</Bgm>
-    </Item>
+<!-- 下記のようにSpecificでは、ステージごとのBGMを指定することができます -->
+<!--
+  <Specific>
+    <Stages>
+      <Stage>
+        <Name>主人公の部屋</Name>
+        <Files>
+          <File>MyRoomMusic.ogg</File>
+        </Files>
+      </Stage>
+      <Stage>
+        <Name>プレイルーム</Name>
+        <Files>
+          <File>PlayRoomMusic001.ogg</File>
+          <File>PlayRoomMusic002.ogg</File>
+        </Files>
+      </Stage>
+    </Stages>
+  </Specific>
 -->
-  </Items>
+<!-- Specific指定をしなかったステージではGenericで指定したBGMがランダムで再生されます -->
+<!--
+  <General>
+    <Files>
+      <File>MyMusic001.ogg</File>
+      <File>MyMusic002.ogg</File>
+      <File>MyMusic003.ogg</File>
+      <File>MyMusic004.ogg</File>
+    </Files>
+  </General>
+-->
 </Config>

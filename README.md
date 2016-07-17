@@ -31,6 +31,9 @@ ConfigフォルダにあるCustomYotogiBgmStatic.xmlを編集してください�
 
 ### 更新履歴
 
+* 0.0.0.3
+  * CustomYotogiBgmStaticにSpecific、Generalの設定を追加
+
 * 0.0.0.2
   * WaitCommandの仕様を削除
   * FadeTimeタグを追加

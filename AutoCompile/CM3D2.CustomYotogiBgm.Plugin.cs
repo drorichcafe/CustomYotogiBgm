@@ -10,7 +10,7 @@ using UnityInjector.Attributes;
 
 namespace CM3D2.CustomYotogiBgm
 {
-	[PluginFilter("CM3D2x64"), PluginFilter("CM3D2x86"), PluginName("CustomYotogiBgm"), PluginVersion("0.0.0.2")]
+	[PluginFilter("CM3D2x64"), PluginFilter("CM3D2x86"), PluginName("CustomYotogiBgm"), PluginVersion("0.0.0.3")]
 	public class CustomYotogiBgm : PluginBase
 	{
 		public class File
